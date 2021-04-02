@@ -1,0 +1,36 @@
+version: "3"
+
+#
+volumes:
+  db-data:
+
+services:
+  web:
+    build: .
+    # ポート接続
+    ports:
+      - "3000:3000"
+    # ローカルとのマウント
+    volumes:
+      - ".:/udemy_rails"
+    # 環境変数
+    environment:
+      - "DATABASE_PASSWORD=postgres"
+    # -it と同じ
+    tty: true
+    stdin_open: true
+
+    # データベースコンテナとの接続
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "DATABASE_PASSWORD=postgres"

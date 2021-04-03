@@ -12,5 +12,5 @@ before_install:
 # DB準備 テスト実行s
 script:
   - docker-compose exec --env 'RAILS_ENV=test' web rails db:create
-  - docker-compose exec --env 'RAILS_ENV=test' web rails db:migraet
+  - docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
   - docker-compose exec --env 'RAILS_ENV=test' web rails test

@@ -11,5 +11,5 @@ COPY Gemfile Gemfile.lock /udemy_rails/
 RUN bundle install
 
 # 全てのファイルをコンテナに移す
-COPY ..
+COPY .. /udemy_rails
 CMD ["rails", "s"]
